@@ -1,0 +1,236 @@
+<html>
+
+<head>
+    <script src="https://kit.fontawesome.com/178170eacc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .theme-dark {
+            --color-primary: #202020;
+            --color-secondary: #141414;
+            --text-color: #e3e4e6;
+            --search-icon: url(./search.png);
+        }
+        
+        .theme-light {
+            --color-primary: #e3e4e6;
+            --color-secondary: #d1d2d4;
+            --text-color: #202020;
+            --search-icon: url(./search-light.png);
+        }
+        
+        .content {
+            animation: 1s fade-in;
+        }
+        
+        body {
+            background-color: var(--color-primary);
+            transition: ease 1s;
+        }
+        
+        .mainbox {
+            background-color: var(--color-secondary);
+            transition: ease 1s;
+            width: 400px;
+            height: 490px;
+            margin: 0 auto;
+            margin-top: 25vh;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .madewith {
+            color: var(--text-color);
+            text-align: center;
+            align-self: flex-end;
+            margin: auto auto;
+            margin-bottom: 50px;
+            transition: ease 1s;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 700;
+        }
+        
+        .name {
+            color: var(--text-color);
+            transition: ease 1s;
+            align-self: flex-start;
+            text-align: center;
+            margin: auto auto;
+            margin-top: 25px;
+            font-size: 40px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        .exp {
+            color: var(--text-color);
+            transition: ease 1s;
+            align-self: flex-start;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: -200px;
+            font-size: 20px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        .fa-caret-left {
+            color: var(--text-color);
+            transition: ease 1s;
+            font-size: 30px;
+            margin-top: 15px;
+            margin-left: 20px;
+            text-decoration: none;
+            transition: ease .5s;
+        }
+        
+        .contacts {
+            height: 0;
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto auto;
+            justify-content: space-around;
+            font-size: 50px;
+            text-align: center;
+            text-decoration: none;
+            row-gap: 30px;
+        }
+        
+        .fa-reddit-alien {
+            color: var(--text-color);
+            transition: ease 1s;
+            transition: ease .5s;
+            text-decoration: none;
+        }
+        
+        .fa-reddit-alien:hover {
+            color: #ff4500;
+        }
+        
+        .fa-youtube {
+            color: var(--text-color);
+            transition: ease 1s;
+            transition: ease .5s;
+            text-decoration: none;
+        }
+        
+        .fa-youtube:hover {
+            color: #ff0000;
+        }
+        
+        .fa-github {
+            color: var(--text-color);
+            transition: ease .5s;
+            text-decoration: none;
+        }
+        
+        .fa-github:hover {
+            color: #211F1F;
+            filter: brightness(1.5);
+        }
+        
+        .fa-twitter {
+            color: var(--text-color);
+            transition: ease .5s;
+            text-decoration: none;
+        }
+        
+        .fa-twitter:hover {
+            color: #1da1f2;
+        }
+        
+        .fa-patreon {
+            color: var(--text-color);
+            transition: ease .5s;
+            text-decoration: none;
+        }
+        
+        .fa-patreon:hover {
+            color: #f96854;
+        }
+        
+        .fa-steam {
+            color: var(--text-color);
+            transition: ease .5s;
+            text-decoration: none;
+        }
+        
+        .fa-steam:hover {
+            color: #2a475e;
+        }
+        
+        .lightmode {
+            color: var(--text-color);
+            transition: ease 1s;
+            position: fixed;
+            left: 20px;
+            bottom: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+    </style>
+
+    <div class="content">
+        <div class="mainbox">
+            <a class="fas fa-caret-left" href="index.html"></a>
+            <p class="name">NeuTab by FreeTurk</p>
+            <p class="exp">The Simple New Tab</p>
+            <div class="contacts">
+                <a class="fab fa-reddit-alien" href="https://www.reddit.com/user/freeturk51"></a>
+                <a class="fab fa-youtube" href="https://www.youtube.com/channel/UCIkquGAdFYs7j19Ld7gezjQ"></a>
+                <a class="fab fa-github" href="https://github.com/FreeTurk"></a>
+                <a class="fab fa-twitter" href="https://twitter.com/EVeriyorum"></a>
+                <a class="fab fa-patreon" href="https://www.patreon.com/freeturk"></a>
+                <a class="fab fa-steam" href="https://steamcommunity.com/profiles/76561198314361193"></a>
+            </div>
+            <p class="madewith">Made by FreeTurk with ❤</p>
+        </div>
+
+        <form class="lightmode">
+            <input type="checkbox" id="lightMode" onchange="toggleTheme()">Light Mode</input>
+        </form>
+    </div>
+
+    <script>
+        function setTheme(themeName) {
+            localStorage.setItem('theme', themeName);
+            document.documentElement.className = themeName;
+        }
+
+        // function to toggle between light and dark theme
+        function toggleTheme() {
+            if (localStorage.getItem('theme') === 'theme-dark') {
+                setTheme('theme-light');
+            } else {
+                setTheme('theme-dark');
+            }
+        }
+
+        // Immediately invoked function to set the theme on initial load
+        (function() {
+            if (localStorage.getItem('theme') === 'theme-dark') {
+                setTheme('theme-dark');
+                document.getElementById('lightMode').checked = false;
+            } else {
+                setTheme('theme-light');
+                document.getElementById('lightMode').checked = true;
+            }
+        })();
+    </script>
+
+</body>
+
+</html>
