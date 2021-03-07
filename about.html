@@ -17,18 +17,46 @@
             }
         }
         
-        .theme-dark {
+        .dark-theme {
             --color-primary: #202020;
             --color-secondary: #141414;
             --text-color: #e3e4e6;
-            --search-icon: url(./search.png);
+            --item-blur: blur(0px);
         }
         
-        .theme-light {
+        .light-theme {
             --color-primary: #e3e4e6;
             --color-secondary: #d1d2d4;
             --text-color: #202020;
-            --search-icon: url(./search-light.png);
+            --item-blur: blur(0px);
+        }
+        
+        .alpenglow {
+            --color-primary: url("./alpenglow.png");
+            --color-secondary: #d1b7d460;
+            --text-color: #e3e4e6;
+            --item-blur: blur(18px);
+        }
+        
+        .biker {
+            --color-primary: url("./biker.jpg");
+            --color-secondary: #d1b7d460;
+            --text-color: #400040;
+            --item-blur: blur(18px);
+        }
+        
+        .planets {
+            --color-primary: url("./planets.jpg");
+            --color-secondary: #d1b7d460;
+            --text-color: #202050;
+            --item-blur: blur(18px);
+        }
+        
+        .slideshow {
+            --color-primary: url("https://source.unsplash.com/random/2560x1440");
+            --color-secondary: #d1b7d460;
+            --text-color: #202050;
+            --item-blur: blur(18px);
         }
         
         .content {
@@ -36,12 +64,16 @@
         }
         
         body {
+            background: var(--color-primary) no-repeat #1b1232;
             background-color: var(--color-primary);
+            background-size: cover;
             transition: ease 1s;
+            z-index: -2;
         }
         
         .mainbox {
             background-color: var(--color-secondary);
+            backdrop-filter: var(--item-blur);
             transition: ease 1s;
             width: 400px;
             height: 490px;
@@ -173,12 +205,18 @@
             color: #2a475e;
         }
         
-        .lightmode {
+        .themeswitcher {
+            backdrop-filter: var(--item-blur);
             color: var(--text-color);
             transition: ease 1s;
-            position: fixed;
+            background-color: var(--color-secondary);
+            position: absolute;
             left: 20px;
-            bottom: 10px;
+            border: 0px;
+            bottom: 20px;
+            height: 30px;
+            border-radius: 10px;
+            padding-left: 5px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
     </style>
@@ -199,36 +237,43 @@
             <p class="madewith">Made by FreeTurk with ❤</p>
         </div>
 
-        <form class="lightmode">
-            <input type="checkbox" id="lightMode" onchange="toggleTheme()">Light Mode</input>
-        </form>
+        <select class="themeswitcher" id="themeswitcher">
+            <option value="dark-theme">Dark Theme</option>
+            <option value="light-theme">Light Theme</option>
+            <option value="alpenglow">Alpenglow</option>
+            <option value="biker">Biker</option>
+            <option value="planets">Planets</option>
+            <option value="slideshow">Slideshow</option>
+        </select>
     </div>
 
     <script>
-        function setTheme(themeName) {
-            localStorage.setItem('theme', themeName);
-            document.documentElement.className = themeName;
-        }
+        window.onload = function() {
+            // Try to read from local storage, otherwise set to default
+            let currentTheme = localStorage.getItem("mytheme") || "dark";
 
-        // function to toggle between light and dark theme
-        function toggleTheme() {
-            if (localStorage.getItem('theme') === 'theme-dark') {
-                setTheme('theme-light');
-            } else {
-                setTheme('theme-dark');
-            }
-        }
+            setTheme("default", currentTheme);
 
-        // Immediately invoked function to set the theme on initial load
-        (function() {
-            if (localStorage.getItem('theme') === 'theme-dark') {
-                setTheme('theme-dark');
-                document.getElementById('lightMode').checked = false;
-            } else {
-                setTheme('theme-light');
-                document.getElementById('lightMode').checked = true;
+            const themeSelector = document.getElementById("themeswitcher");
+            themeSelector.value = currentTheme;
+
+            themeSelector.addEventListener("change", function(e) {
+                const newTheme = e.currentTarget.value;
+                setTheme(currentTheme, newTheme);
+            });
+
+            function setTheme(oldTheme, newTheme) {
+                const body = document.getElementsByTagName("body")[0];
+
+                body.classList.remove(oldTheme);
+                body.classList.add(newTheme);
+
+                currentTheme = newTheme;
+
+                // Store the new theme in local storage
+                localStorage.setItem("mytheme", newTheme);
             }
-        })();
+        };
     </script>
 
 </body>

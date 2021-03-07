@@ -3,6 +3,35 @@
 <head>
 
     <script src="https://kit.fontawesome.com/178170eacc.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        window.onload = function() {
+            // Try to read from local storage, otherwise set to default
+            let currentTheme = localStorage.getItem("mytheme") || "default";
+
+            setTheme("default", currentTheme);
+
+            const themeSelector = document.getElementById("themeswitcher");
+            themeSelector.value = currentTheme;
+
+            themeSelector.addEventListener("change", function(e) {
+                const newTheme = e.currentTarget.value;
+                setTheme(currentTheme, newTheme);
+            });
+
+            function setTheme(oldTheme, newTheme) {
+                const body = document.getElementsByTagName("body")[0];
+
+                body.classList.remove(oldTheme);
+                body.classList.add(newTheme);
+
+                currentTheme = newTheme;
+
+                // Store the new theme in local storage
+                localStorage.setItem("mytheme", newTheme);
+            }
+        };
+    </script>
 
     <style>
         @keyframes fade-in {
@@ -16,18 +45,54 @@
             }
         }
         
-        .theme-dark {
+        .dark-theme {
             --color-primary: #202020;
             --color-secondary: #141414;
             --text-color: #e3e4e6;
-            --search-icon: url(./search.png);
+            --item-blur: blur(0px);
         }
         
-        .theme-light {
+        .light-theme {
             --color-primary: #e3e4e6;
             --color-secondary: #d1d2d4;
             --text-color: #202020;
-            --search-icon: url(./search-light.png);
+            --item-blur: blur(0px);
+        }
+        
+        .alpenglow {
+            --color-primary: url("./alpenglow.png");
+            --color-secondary: #d1b7d460;
+            --text-color: #e3e4e6;
+            --item-blur: blur(18px);
+        }
+        
+        .biker {
+            --color-primary: url("./biker.jpg");
+            --color-secondary: #d1b7d460;
+            --text-color: #400040;
+            --item-blur: blur(18px);
+        }
+        
+        .planets {
+            --color-primary: url("./planets.jpg");
+            --color-secondary: #d1b7d460;
+            --text-color: #202050;
+            --item-blur: blur(18px);
+        }
+        
+        .slideshow {
+            --color-primary: url("https://source.unsplash.com/random/2560x1440");
+            --color-secondary: #d1b7d460;
+            --text-color: #202050;
+            --item-blur: blur(18px);
+        }
+        
+        .light-theme::placeholder {
+            color: #303030;
+        }
+        
+        .alpenglow.search-box::placeholder {
+            color: #fff;
         }
         
         .content {
@@ -35,31 +100,34 @@
         }
         
         body {
+            background: var(--color-primary) no-repeat #1b1232;
             background-color: var(--color-primary);
+            background-size: cover;
             transition: ease 1s;
+            z-index: -2;
         }
         
-        .search-button {
-            background-color: var(--color-secondary);
+        .fa-search {
+            background-color: #00000000;
             color: var(--text-color);
-            border-radius: 0px 10px 10px 0px;
+            border-radius: 10px;
             border: 0px;
-            width: 100%;
-            background-image: var(--search-icon);
-            background-size: 30px;
+            color: var(--text-color);
+            width: 70px;
+            min-width: 70px;
             background-repeat: no-repeat;
-            background-position-x: 10px;
-            background-position-y: 10px;
             cursor: pointer;
             transition: ease 1s;
+            font-family: FontAwesome;
+            z-index: 1;
         }
         
         .search {
-            display: grid;
+            display: flex;
             width: 60%;
-            align-items: stretch;
             min-width: 550px;
-            grid-template-columns: calc(100% - 70px) 70px;
+            grid-template-columns: calc(100%-70px) 70px;
+            grid-template-rows: 50px;
             grid-gap: 0px;
             margin-left: 20%;
             margin-right: 20%;
@@ -67,28 +135,33 @@
         }
         
         .search-box {
-            border-radius: 10px 0px 0px 10px;
+            backdrop-filter: var(--item-blur);
+            border-radius: 10px;
             background-color: var(--color-secondary);
             background-image: url('https://cdn2.iconfinder.com/data/icons/social-media-2259/512/search-512.png');
             background-size: 20px;
             background-repeat: no-repeat;
             background-position-x: 15px;
             background-position-y: 15px;
+            margin-right: -70px;
             box-shadow: 0px;
             border: 0px;
             height: 50px;
             width: 100%;
+            min-width: 480px;
+            justify-self: left;
             min-width: 550px;
             color: var(--text-color);
             padding-left: 50px;
             font-weight: 600;
             transition: ease 1s;
+            z-index: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
         
         .search-box:focus {
             font-weight: 0;
-            border-radius: 10px;
+            border-radius: 10px 0px 0px 10px;
             border: 0px;
             font-weight: 600;
             transition: ease 1s;
@@ -107,6 +180,7 @@
         }
         
         .shortcuts {
+            backdrop-filter: var(--item-blur);
             padding-top: 30px;
             border-radius: 10px;
             padding-left: 0;
@@ -114,12 +188,14 @@
             grid-column-gap: 0px;
             width: 100%;
             height: 60px;
+            color: var(--text-color);
             padding-bottom: 20px;
             min-height: 120px;
             max-height: 120px;
             display: grid;
             grid-template-columns: auto auto auto;
             grid-template-rows: auto auto;
+            align-items: stretch;
             background-color: var(--color-secondary);
             justify-content: space-evenly;
             font-size: 35px;
@@ -128,6 +204,7 @@
         }
         
         #clock {
+            backdrop-filter: var(--item-blur);
             padding-top: 50px;
             border-radius: 10px;
             padding-left: 0px;
@@ -153,7 +230,7 @@
         }
         
         .bottombutton {
-            background-color: var(--color-secondary);
+            background-color: #00000000;
             border: 0px;
             color: var(--text-color);
             cursor: pointer;
@@ -161,6 +238,7 @@
         }
         
         .bottombar {
+            backdrop-filter: var(--item-blur);
             transition: ease 1s;
             background: var(--color-secondary);
             width: calc(60% - 20px);
@@ -186,10 +264,22 @@
             color: var(--text-color);
             transition: ease .5s;
             text-decoration: none;
+            display: block;
         }
         
         .fa-youtube:hover {
             color: #ff0000;
+        }
+        
+        .fa-linkedin {
+            color: var(--text-color);
+            transition: ease .5s;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .fa-linkedin:hover {
+            color: #2867B2;
         }
         
         .fa-reddit-alien {
@@ -209,7 +299,48 @@
         }
         
         .fa-github:hover {
-            color: #F4CBB2;
+            color: #211F1F;
+            filter: brightness(1.5)
+        }
+        
+        .fa-instagram {
+            color: var(--text-color);
+            transition: ease .5s;
+            text-decoration: none;
+        }
+        
+        .fa-instagram:hover {
+            color: #fb3958;
+        }
+        
+        .fa-tiktok {
+            color: var(--text-color);
+            transition: ease .5s;
+            text-decoration: none;
+        }
+        
+        .fa-tiktok:hover {
+            color: #69C9D0;
+        }
+        
+        .fa-tumblr {
+            color: var(--text-color);
+            transition: ease .5s;
+            text-decoration: none;
+        }
+        
+        .fa-tumblr:hover {
+            color: #34526f;
+        }
+        
+        .fa-facebook {
+            color: var(--text-color);
+            transition: ease .5s;
+            text-decoration: none;
+        }
+        
+        .fa-facebook:hover {
+            color: #4267B2;
         }
         
         .fa-twitter {
@@ -245,7 +376,7 @@
         .fa-patreon {
             text-decoration: none;
             color: var(--text-color);
-            background: var(--color-secondary);
+            background: #00000000;
             border: 0px;
             cursor: pointer;
             transition: ease 1s;
@@ -253,17 +384,24 @@
         
         .support {
             color: var(--text-color);
+            background-color: #00000000;
             transition: ease 1s;
             text-decoration: none;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
         
-        .lightmode {
+        .themeswitcher {
+            backdrop-filter: var(--item-blur);
             color: var(--text-color);
             transition: ease 1s;
+            background-color: var(--color-secondary);
             position: absolute;
             left: 20px;
-            bottom: 10px;
+            border: 0px;
+            bottom: 20px;
+            height: 30px;
+            border-radius: 10px;
+            padding-left: 5px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
         
@@ -274,32 +412,46 @@
         .body_light {
             background: #f2f2f2;
         }
+        
+        .hide {
+            display: none;
+        }
     </style>
 
 </head>
 
-<body>
+<body class="dark-theme">
     <div class="content">
         <form method="get" action="https://www.google.com/search">
             <div class="search">
                 <input type="text" id="search-bar" name="q" placeholder="Where do you want to go today?" size="31" value="" class="search-box">
-                <input type="submit" value="" class="search-button" placeholder="fas fa-search">
+                <input type="submit" value="&#xf002;" class="fas fa-search">
             </div>
         </form>
 
         <div class="bottomdiv">
-            <div class="shortcuts">
-                <a class="fab fa-youtube" href="https://www.youtube.com"></a>
+            <div class="shortcuts" id="shorties">
+                <a id="ytbutton" class="fab fa-youtube" href="https://www.youtube.com"></a>
 
-                <a class="fab fa-reddit-alien" href="https://www.reddit.com"></a>
+                <a id="redbutton" class="fab fa-reddit-alien" href="https://www.reddit.com"></a>
 
-                <a class="fab fa-twitter" href="https://www.twitter.com"></a>
+                <a id="twitbutton" class="fab fa-twitter" href="https://www.twitter.com"></a>
 
-                <a class="fab fa-github" href="https://www.github.com"></a>
+                <a id="gitbutton" class="fab fa-github" href="https://www.github.com"></a>
 
-                <a class="fab fa-wikipedia-w" href="https://www.wikipedia.com"></a>
+                <a id="wikibutton" class="fab fa-wikipedia-w" href="https://www.wikipedia.com"></a>
 
-                <a class="fab fa-twitch" href="https://www.twitch.tv"></a>
+                <a id="twchbutton" class="fab fa-twitch" href="https://www.twitch.tv"></a>
+
+                <a id="linkbutton" class="fab fa-linkedin" href="https://www.linkedin.com"></a>
+
+                <a id="instabutton" class="fab fa-instagram" href="https://www.instagram.com"></a>
+
+                <a id="tikbutton" class="fab fa-tiktok" href="https://www.tiktok.com"></a>
+
+                <a id="tumbbutton" class="fab fa-tumblr" href="https://www.linkedin.com"></a>
+
+                <a id="facebutton" class="fab fa-facebook" href="https://www.linkedin.com"></a>
             </div>
 
             <div id="clock">
@@ -313,6 +465,10 @@
                 About
             </button>
 
+            <button onclick="window.location.href='settings.html'" class="bottombutton" url="./about.html">
+                Settings
+            </button>
+
             <button class="fab fa-patreon" onclick="window.location.href='https://www.patreon.com/freeturk'">
                 <a class="support">
                     Support Me!
@@ -320,37 +476,44 @@
             </button>
         </div>
 
-        <form class="lightmode">
-            <input type="checkbox" id="lightMode" onchange="toggleTheme()">Light Mode</input>
-        </form>
+        <select class="themeswitcher" id="themeswitcher">
+            <option value="dark-theme">Dark Theme</option>
+            <option value="light-theme">Light Theme</option>
+            <option value="alpenglow">Alpenglow</option>
+            <option value="biker">Biker</option>
+            <option value="planets">Planets</option>
+            <option value="slideshow">Slideshow</option>
+        </select>
 
     </div>
 
     <script>
-        function setTheme(themeName) {
-            localStorage.setItem('theme', themeName);
-            document.documentElement.className = themeName;
-        }
+        window.onload = function() {
+            // Try to read from local storage, otherwise set to default
+            let currentTheme = localStorage.getItem("mytheme") || "dark";
 
-        // function to toggle between light and dark theme
-        function toggleTheme() {
-            if (localStorage.getItem('theme') === 'theme-dark') {
-                setTheme('theme-light');
-            } else {
-                setTheme('theme-dark');
-            }
-        }
+            setTheme("default", currentTheme);
 
-        // Immediately invoked function to set the theme on initial load
-        (function() {
-            if (localStorage.getItem('theme') === 'theme-dark') {
-                setTheme('theme-dark');
-                document.getElementById('lightMode').checked = false;
-            } else {
-                setTheme('theme-light');
-                document.getElementById('lightMode').checked = true;
+            const themeSelector = document.getElementById("themeswitcher");
+            themeSelector.value = currentTheme;
+
+            themeSelector.addEventListener("change", function(e) {
+                const newTheme = e.currentTarget.value;
+                setTheme(currentTheme, newTheme);
+            });
+
+            function setTheme(oldTheme, newTheme) {
+                const body = document.getElementsByTagName("body")[0];
+
+                body.classList.remove(oldTheme);
+                body.classList.add(newTheme);
+
+                currentTheme = newTheme;
+
+                // Store the new theme in local storage
+                localStorage.setItem("mytheme", newTheme);
             }
-        })();
+        };
     </script>
 
     <script>
@@ -394,6 +557,98 @@
             };
         };
         clock();
+    </script>
+
+    <script>
+        var ytdata = localStorage.getItem('box-1')
+        var reddata = localStorage.getItem('box-2')
+        var wikidata = localStorage.getItem('box-3')
+        var twchdata = localStorage.getItem('box-4')
+        var gitdata = localStorage.getItem('box-5')
+        var twitdata = localStorage.getItem('box-6')
+        var instadata = localStorage.getItem('box-7')
+        var tikdata = localStorage.getItem('box-8')
+        var tumbdata = localStorage.getItem('box-9')
+        var linkdata = localStorage.getItem('box-10')
+        var facedata = localStorage.getItem('box-11')
+
+        checkcheckboxes = function() {
+            if (ytdata !== "Youtube" && reddata !== "Reddit" && wikidata !== "Wikipedia" && twchdata !== "Twitch" && linkdata !== "LinkedIn" && gitdata !== "Github" && twitdata !== "Twitter" && instadata !== "Instagram" && tikdata !== "TikTok" && tumbdata !== "Tumblr" && facedata !== "Facebook") {
+                $("#shorties").css("display", "flex");
+                $("#shorties").css("font-weight", "600");
+                $("#shorties").css("font-family", "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif");
+                document.getElementById("shorties").innerText = "Click on 'Settings'\n to get started!"
+            }
+
+            if (ytdata === "Youtube") {
+                $("#ytbutton").css("display", "block");
+            } else {
+                $("#ytbutton").css("display", "none");
+            }
+
+            if (reddata === "Reddit") {
+                $("#redbutton").css("display", "block");
+            } else {
+                $("#redbutton").css("display", "none");
+            }
+
+            if (wikidata === "Wikipedia") {
+                $("#wikibutton").css("display", "block");
+            } else {
+                $("#wikibutton").css("display", "none");
+            }
+
+            if (twchdata === "Twitch") {
+                $("#twchbutton").css("display", "block");
+            } else {
+                $("#twchbutton").css("display", "none");
+            }
+
+            if (linkdata === "LinkedIn") {
+                $("#linkbutton").css("display", "block");
+            } else {
+                $("#linkbutton").css("display", "none");
+            }
+
+            if (gitdata === "Github") {
+                $("#gitbutton").css("display", "block");
+            } else {
+                $("#gitbutton").css("display", "none");
+            }
+
+            if (twitdata === "Twitter") {
+                $("#twitbutton").css("display", "block");
+            } else {
+                $("#twitbutton").css("display", "none");
+            }
+
+            if (instadata === "Instagram") {
+                $("#instabutton").css("display", "block");
+            } else {
+                $("#instabutton").css("display", "none");
+            }
+
+            if (tikdata === "TikTok") {
+                $("#tikbutton").css("display", "block");
+            } else {
+                $("#tikbutton").css("display", "none");
+            }
+
+            if (tumbdata === "Tumblr") {
+                $("#tumbbutton").css("display", "block");
+            } else {
+                $("#tumbbutton").css("display", "none");
+            }
+
+            if (facedata === "Facebook") {
+                $("#facebutton").css("display", "block");
+            } else {
+                $("#facebutton").css("display", "none");
+            }
+        }
+
+
+        checkcheckboxes();
     </script>
 
 </body>
