@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <script src="https://kit.fontawesome.com/178170eacc.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./scripts/index-head.js"></script>
+
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+
+<body class="dark-theme">
+    <div class="content">
+        <form method="get" action="https://www.google.com/search">
+            <div class="search">
+                <input type="text" id="search-bar" name="q" placeholder="Where do you want to go today?" size="31" value="" class="search-box">
+                <input type="submit" value="&#xf002;" class="fas fa-search">
+            </div>
+        </form>
+
+        <div class="bottomdiv">
+            <div data-arrange="lt-grid" class="shortcuts" id="shorties" data-params='{
+                "lg":{
+                    "gap":4,
+                    "cols":5,
+                    "aspect":0.5},
+                "md":{
+                    "gap":6,
+                    "cols":4,
+                    "aspect":0.6666666667},
+                "sm":{
+                    "gap":8,
+                    "cols":3,
+                    "aspect":1},
+                "xs":{
+                    "gap":12,
+                    "cols":2,
+                    "aspect":1.5}
+             }'>
+
+                <a id="ytbutton" class="fab fa-youtube" id="drag" href="https://www.youtube.com"></a>
+
+                <a id="redbutton" class="fab fa-reddit-alien" href="https://www.reddit.com"></a>
+
+                <a id="twitbutton" class="fab fa-twitter" href="https://www.twitter.com"></a>
+
+                <a id="gitbutton" class="fab fa-github" href="https://www.github.com"></a>
+
+                <a id="wikibutton" class="fab fa-wikipedia-w" href="https://www.wikipedia.com"></a>
+
+                <a id="twchbutton" class="fab fa-twitch" href="https://www.twitch.tv"></a>
+
+                <a id="linkbutton" class="fab fa-linkedin" href="https://www.linkedin.com"></a>
+
+                <a id="instabutton" class="fab fa-instagram" href="https://www.instagram.com"></a>
+
+                <a id="tikbutton" class="fab fa-tiktok" href="https://www.tiktok.com"></a>
+
+                <a id="tumbbutton" class="fab fa-tumblr" href="https://www.linkedin.com"></a>
+
+                <a id="facebutton" class="fab fa-facebook" href="https://www.linkedin.com"></a>
+            </div>
+
+            <div id="clock">
+
+            </div>
+
+        </div>
+
+        <div class="bottombar">
+            <button onclick="window.location.href='about.html'" class="bottombutton" url="./about.html">
+                About
+            </button>
+
+            <button onclick="window.location.href='settings.html'" class="bottombutton" url="./about.html">
+                Settings
+            </button>
+
+            <button class="fab fa-patreon" onclick="window.location.href='https://www.patreon.com/freeturk'">
+                <a class="support">
+                    Support Me!
+                </a>
+            </button>
+        </div>
+
+        <select class="themeswitcher" id="themeswitcher">
+            <option value="dark-theme">Dark Theme</option>
+            <option value="light-theme">Light Theme</option>
+            <option value="alpenglow">Alpenglow</option>
+            <option value="biker">Biker</option>
+            <option value="planets">Planets</option>
+            <option value="slideshow">Slideshow</option>
+        </select>
+
+    </div>
+
+    <script src="./scripts/themeswitcher.js"></script>
+    <script src="./scripts/clock.js"></script>
+    <script src="./scripts/favs-index.js"></script>
+
+</body>
+
+</html>

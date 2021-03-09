@@ -1,0 +1,213 @@
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dark-theme {
+    --color-primary: #202020;
+    --color-secondary: #141414;
+    --text-color: #e3e4e6;
+    --item-blur: blur(0px);
+}
+
+.light-theme {
+    --color-primary: #e3e4e6;
+    --color-secondary: #d1d2d4;
+    --text-color: #202020;
+    --item-blur: blur(0px);
+}
+
+.alpenglow {
+    --color-primary: url("./alpenglow.png");
+    --color-secondary: #d1b7d460;
+    --text-color: #e3e4e6;
+    --item-blur: blur(18px);
+}
+
+.biker {
+    --color-primary: url("./biker.jpg");
+    --color-secondary: #d1b7d460;
+    --text-color: #400040;
+    --item-blur: blur(18px);
+}
+
+.planets {
+    --color-primary: url("./planets.jpg");
+    --color-secondary: #d1b7d460;
+    --text-color: #202050;
+    --item-blur: blur(18px);
+}
+
+.slideshow {
+    --color-primary: url("https://source.unsplash.com/random/2560x1440");
+    --color-secondary: #d1b7d460;
+    --text-color: #202050;
+    --item-blur: blur(18px);
+}
+
+.content {
+    animation: 1s fade-in;
+}
+
+body {
+    background: var(--color-primary) no-repeat #1b1232;
+    background-color: var(--color-primary);
+    background-size: cover;
+    transition: ease 1s;
+    z-index: -2;
+}
+
+.mainbox {
+    background-color: var(--color-secondary);
+    backdrop-filter: var(--item-blur);
+    transition: ease 1s;
+    width: 400px;
+    height: 490px;
+    margin: 0 auto;
+    margin-top: 25vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.madewith {
+    color: var(--text-color);
+    text-align: center;
+    align-self: flex-end;
+    margin: auto auto;
+    margin-bottom: 50px;
+    transition: ease 1s;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+}
+
+.name {
+    color: var(--text-color);
+    transition: ease 1s;
+    align-self: flex-start;
+    text-align: center;
+    margin: auto auto;
+    margin-top: 25px;
+    font-size: 40px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.exp {
+    color: var(--text-color);
+    transition: ease 1s;
+    align-self: flex-start;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: -200px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.fa-caret-left {
+    color: var(--text-color);
+    transition: ease 1s;
+    font-size: 30px;
+    margin-top: 15px;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: ease .5s;
+}
+
+.contacts {
+    height: 0;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    justify-content: space-around;
+    font-size: 50px;
+    text-align: center;
+    text-decoration: none;
+    row-gap: 30px;
+}
+
+.fa-reddit-alien {
+    color: var(--text-color);
+    transition: ease 1s;
+    transition: ease .5s;
+    text-decoration: none;
+}
+
+.fa-reddit-alien:hover {
+    color: #ff4500;
+}
+
+.fa-youtube {
+    color: var(--text-color);
+    transition: ease 1s;
+    transition: ease .5s;
+    text-decoration: none;
+}
+
+.fa-youtube:hover {
+    color: #ff0000;
+}
+
+.fa-github {
+    color: var(--text-color);
+    transition: ease .5s;
+    text-decoration: none;
+}
+
+.fa-github:hover {
+    color: #211F1F;
+    filter: brightness(1.5);
+}
+
+.fa-twitter {
+    color: var(--text-color);
+    transition: ease .5s;
+    text-decoration: none;
+}
+
+.fa-twitter:hover {
+    color: #1da1f2;
+}
+
+.fa-patreon {
+    color: var(--text-color);
+    transition: ease .5s;
+    text-decoration: none;
+}
+
+.fa-patreon:hover {
+    color: #f96854;
+}
+
+.fa-steam {
+    color: var(--text-color);
+    transition: ease .5s;
+    text-decoration: none;
+}
+
+.fa-steam:hover {
+    color: #2a475e;
+}
+
+.themeswitcher {
+    backdrop-filter: var(--item-blur);
+    color: var(--text-color);
+    transition: ease 1s;
+    background-color: var(--color-secondary);
+    position: absolute;
+    left: 20px;
+    border: 0px;
+    bottom: 20px;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 5px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
