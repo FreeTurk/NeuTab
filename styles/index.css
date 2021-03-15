@@ -24,21 +24,21 @@
 }
 
 .alpenglow {
-    --color-primary: url("./alpenglow.png");
+    --color-primary: url("./media/alpenglow.png");
     --color-secondary: #d1b7d460;
     --text-color: #e3e4e6;
     --item-blur: blur(18px);
 }
 
 .biker {
-    --color-primary: url("./biker.jpg");
+    --color-primary: url("./media/biker.jpg");
     --color-secondary: #d1b7d460;
     --text-color: #400040;
     --item-blur: blur(18px);
 }
 
 .planets {
-    --color-primary: url("./planets.jpg");
+    --color-primary: url("./media/planets.jpg");
     --color-secondary: #d1b7d460;
     --text-color: #202050;
     --item-blur: blur(18px);
